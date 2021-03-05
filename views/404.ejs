@@ -1,85 +1,20 @@
-<!doctype html>
-<html lang="en">
+<%- include("templates/head") %>
+<!-- CSS -->
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-    crossorigin="anonymous" />
-  <!-- ToastR CSS -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-  <!-- CSS -->
-
-  <title> <%= pageTitle %> </title>
+<title> <%= pageTitle %> </title>
 </head>
 
-<body>
+<%- include("templates/navBar") %>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #113650;">
-    <div class="d-flex flex-grow-1">
-      <span class="w-100 d-lg-none d-block"></span>
-      <a class=" navbar-brand" href="#">
-        <i class="fas fa-university"></i>
-        BIBLIOTECA
-      </a>
-      <div class="w-100 text-right">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar7">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
-      <ul class="navbar-nav ml-auto flex-nowrap navbar-dark">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBook" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Prestamos
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownBook">
-            <a class="dropdown-item" href="#">Préstamo de Libro</a>
-            <a class="dropdown-item" href="#">Devolución de Libro</a>
-            <a class="dropdown-item" href="#">Historial de Prestamos</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="/" class="nav-link">Lista de Libros</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">Usuarios</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<br><br><br>
 
-  <br><br><br>
-  <br><br><br>
+<div class="alert alert-warning" role="alert">
+  <h3 class="alert-heading text-center">LA PAGINA NO EXISTE!</h3>
+</div>
 
-  <div class="alert alert-warning" role="alert">
-    <h3 class="alert-heading text-center">LA PAGINA NO EXISTE!</h3>
-  </div>
+<%- include("templates/scripsJS") %>
 
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-  </script>
-  <!-- ToastR -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <!-- Font Awesome JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
-    integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
-    crossorigin="anonymous"></script>
-  <!-- JS -->
+<!-- JS -->
 
 </body>
 
