@@ -15,16 +15,18 @@ router.get("/", (req, res, next) => {
   res.render("books", {
     pageTitle: "Lista Libros",
     books: books,
+    resultAddBook : null
   });
 });
 
 // /add-book => POST
 router.post("/add-book", (req, res, next) => {
-  const addBook = books.find(
+  const currentBook = books.find(
     (book) => book.ISBN.toLowerCase() === req.body.ISBN.toLowerCase()
   );
-  if (addBook) {
-    res.redirect("/");
+  let resultAddBook;
+  if (currentBook) {
+    resultAddBook = "incorrect";
   } else {
     books.push({
       ISBN: req.body.ISBN,
@@ -36,8 +38,13 @@ router.post("/add-book", (req, res, next) => {
     });
     const dataBooks = JSON.stringify(books);
     fs.writeFileSync(path.join(rootDir, "data", "books.json"), dataBooks);
-    res.redirect("/");
+    resultAddBook = "successful";
   }
+  res.render("books", {
+    pageTitle: "Lista Libros",
+    books: books,
+    resultAddBook: resultAddBook,
+  });
 });
 
 exports.routes = router;

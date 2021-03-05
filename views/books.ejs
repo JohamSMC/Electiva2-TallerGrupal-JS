@@ -56,7 +56,19 @@
       </table>
     </div>
 
-    <br><br>
+    <br>
+
+    <% if (resultAddBook === "successful") { %>
+      <div class="alert alert-success" role="alert">
+        Libro añadido con éxito.
+      </div>
+    <% } %>
+
+    <% if (resultAddBook === "incorrect") { %>
+      <div class="alert alert-danger" role="alert">
+        El libro NO se añadió con éxito.
+      </div>
+    <% } %>
 
     <button class="btn btn-info btn-lg btn-block" type="button" data-toggle="collapse" data-target="#addBook" aria-expanded="false" aria-controls="collapseExample">
       Añadir Libro
