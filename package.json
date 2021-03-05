@@ -1,0 +1,33 @@
+{
+  "name": "taller-grupal-js-biblioteca",
+  "version": "1.0.0",
+  "description": "Taller Grupal Electiva 2 JS, Biblioteca para préstamo de libros ",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohamSMC/Electiva2-TallerGrupal-JS.git"
+  },
+  "keywords": [
+    "Node",
+    "JS",
+    "Bootstrap4"
+  ],
+  "author": "Joham Medina <joham.smc@gmail.com> (https://github.com/JohamSMC)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohamSMC/Electiva2-TallerGrupal-JS/issues"
+  },
+  "homepage": "https://github.com/JohamSMC/Electiva2-TallerGrupal-JS#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
