@@ -1,0 +1,65 @@
+<%- include("templates/head") %>
+<!-- CSS -->
+
+<title> <% pageTitle %> </title>
+</head>
+
+<%- include("templates/navBar") %>
+
+<div class="container">
+  <div class="text-center">
+    <h1 class="font-weight-bolder">BIBLIOTECA <i class="fas fa-book-open"></i> </h1>
+    <h2 class="font-weight-bolder">Municipal</h2>
+  </div>
+
+  <br>
+  <h2 class="text-center font-italic font-weight-bold">Historial de Prestamos</h2>
+  <br>
+
+  <br>
+
+  <div class="table-responsive">
+    <table id="tableBooks" class="table table-hover">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col">ISBN</th>
+          <th scope="col">Titulo Libro</th>
+          <th scope="col">Número de Documento</th>
+          <th scope="col">Nombre Usuario</th>
+          <th scope="col">Fecha de Préstamo</th>
+          <th scope="col">Fecha de Devolución</th>
+          <th scope="col" class="table-info">Estado</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% for(let item of loans) {%>
+        <tr>
+          <input type="hidden" name="toDelete" value="<%= item.name %>">
+          <td class="text-center"><%= item.ISBN %></td>
+          <td class="text-center"><%= item.title%></td>
+          <td class="text-center"><%= item.IdNumber %></td>
+          <td class="text-center"><%= item.name%></td>
+          <td class="text-center"><%= item.loanDate %></td>
+          <td class="text-center"><%= item.returnDate %></td>
+
+          <% if (item.return){ %>
+          <td class="text-center table-success">Devuelto</td>
+          <% } else { %>
+          <td class="text-center table-danger">No devuelto</td>
+          <% } %>
+        </tr>
+        <%}%>
+      <tbody>
+    </table>
+  </div>
+
+  <br><br><br>
+
+  </div>
+
+<%- include("templates/scripsJS") %>
+        <!-- JS -->
+
+        </body>
+
+        </html>

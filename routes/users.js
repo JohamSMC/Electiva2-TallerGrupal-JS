@@ -26,7 +26,6 @@ router.get("/delete-user", (req, res, next) => {
 
 // /delete-user => POST
 router.post("/delete-user", (req, res, next) => {
-  console.log("entro");
   users = fs.readFileSync(path.join(rootDir, "data", "users.json"));
   users = JSON.parse(users);
   let resultDeleteUser = null;
@@ -36,7 +35,6 @@ router.post("/delete-user", (req, res, next) => {
   if (currentUser && !currentUser.hasBooksLoan) {
     let pos = users.indexOf(currentUser);
     users.splice(pos, 1);
-    console.log("------------");
     //* Eliminar el usuario de data users.json
     const dataUsers = JSON.stringify(users);
     fs.writeFileSync(path.join(rootDir, "data", "users.json"), dataUsers);
@@ -44,7 +42,7 @@ router.post("/delete-user", (req, res, next) => {
   } else {
     resultDeleteUser = "incorrect";
   }
-  console.log(resultDeleteUser);
+
   res.render("userDelete", {
     pageTitle: "Eliminar Usuario",
     users: users,

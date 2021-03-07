@@ -1,0 +1,114 @@
+<%- include("templates/head") %>
+<!-- CSS -->
+
+<title> <% pageTitle %> </title>
+</head>
+
+<%- include("templates/navBar") %>
+
+<div class="container">
+  <div class="text-center">
+    <h1 class="font-weight-bolder">BIBLIOTECA <i class="fas fa-book-open"></i> </h1>
+    <h2 class="font-weight-bolder">Municipal</h2>
+  </div>
+
+  <br>
+  <h2 class="text-center font-italic font-weight-bold">Devolución de libro</h2>
+  <br>
+
+  <button class="btn btn-info btn-lg btn-block" type="button" data-toggle="collapse" data-target="#returnBook"
+    aria-expanded="false" aria-controls="collapseExample">
+    Devolver Libro
+    <i class="fas fa-book"></i>
+  </button>
+  <div class="collapse" id="returnBook">
+    <div class="card card-body">
+      <form class="" action="/returnBook" method="POST">
+
+        <div class="form-row">
+          <select class="custom-select" name="userIdNumber" id="userIdNumber" required>
+            <option value="" selected disabled>Seleccione un usuario</option>
+            <% for( let user of users ) { %>
+            <% if (user.hasBooksLoan){ %>
+            <option value="<%= user.IdNumber %>"> <%= user.name %> - <%= user.IdNumber %> </option>
+            <% } else { %>
+            <option value="<%= user.IdNumber %>" disabled> <%= user.name %> - <%= user.IdNumber %> </option>
+            <% } %>
+
+            <% } %>
+          </select>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <select class="custom-select" name="bookISBN" id="bookISBN" required>
+            <option value="" selected disabled>Seleccione un libro</option>
+            <% for( let book of books ) { %>
+            <% if (book.hasLoan){ %>
+            <option value="<%= book.ISBN %>"> <%= book.title %> - <%= book.ISBN %> </option>
+            <% } else { %>
+            <option value="<%= book.ISBN %>" disabled> <%= book.title %> - <%= book.ISBN %> </option>
+            <% } %>
+            <% } %>
+          </select>
+        </div>
+
+        <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">
+            Devolver Libro
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <br>
+  <h2 class="text-center font-italic font-weight-bold">Libros para devolver</h2>
+  <br>
+
+  <div class="table-responsive">
+    <table id="tableBooks" class="table table-hover">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col">ISBN</th>
+          <th scope="col">Titulo Libro</th>
+          <th scope="col">Número de Documento</th>
+          <th scope="col">Nombre Usuario</th>
+          <th scope="col">Fecha de Préstamo</th>
+          <th scope="col">Fecha de Devolución</th>
+          <th scope="col" class="table-info">Estado</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% for(let item of loans) {%>
+        <% if (!item.return){ %>
+        <tr>
+          <input type="hidden" name="toDelete" value="<%= item.name %>">
+          <td class="text-center"><%= item.ISBN %></td>
+          <td class="text-center"><%= item.title%></td>
+          <td class="text-center"><%= item.IdNumber %></td>
+          <td class="text-center"><%= item.name%></td>
+          <td class="text-center"><%= item.loanDate %></td>
+          <td class="text-center"><%= item.returnDate %></td>
+          <td class="text-center table-danger">No devuelto</td>
+        </tr>
+        <% } %>
+        <%}%>
+      <tbody>
+    </table>
+  </div>
+
+  <br><br><br>
+
+  </div>
+
+<%- include("templates/scripsJS") %>
+        <!-- JS -->
+
+        </body>
+
+        </html>
