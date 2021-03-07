@@ -46,4 +46,24 @@ router.post("/add-book", (req, res, next) => {
   });
 });
 
+// /delete-book => POST
+router.post("/delete-book", (req, res, next) => {
+  const currentBook = books.find((book) => book.ISBN === req.body.ISBN);
+  let resultAddBook;
+  if (currentBook.amountBorrowed >= 1) {
+    resultAddBook = "incorrect";
+  } else {
+    const pos = books.indexOf(currentBook);
+    books.splice(pos,1);
+    const dataBooks = JSON.stringify(books);
+    fs.writeFileSync(path.join(rootDir, "data", "books.json"), dataBooks);
+    resultAddBook = "successful";
+  }
+  res.render("books", {
+    pageTitle: "Lista Libros",
+    books: books,
+    resultAddBook: resultAddBook,
+  });
+});
+
 exports.routes = router;

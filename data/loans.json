@@ -1,1 +1,27 @@
-[{"IdNumber":"1052341586","ISBN":"9788423919000","loanDate":"2021-03-7","returnDate":"2021-03-10","return":true,"title":"Cien Años de Soledad","name":"Pepita Perez Mendieta"},{"IdNumber":"1052341586","ISBN":"9786124039669","loanDate":"2021-03-5","returnDate":"2021-03-7","return":true,"title":"La ciudad y los perros","name":"Pepita Perez Mendieta"},{"IdNumber":"1052341586","ISBN":"9786124039669","loanDate":"2021-03-06","returnDate":"2021-03-07","return":false}]
+[
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9788423919000",
+        "loanDate": "2021-03-07",
+        "returnDate": "2021-03-10",
+        "return": true,
+        "title": "Cien Años de Soledad",
+        "name": "Pepita Perez Mendieta"
+    },
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9786124039669",
+        "loanDate": "2021-03-05",
+        "returnDate": "2021-03-07",
+        "return": true,
+        "title": "La ciudad y los perros",
+        "name": "Pepita Perez Mendieta"
+    },
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9786124039669",
+        "loanDate": "2021-03-06",
+        "returnDate": "YYYY-MM-DD",
+        "return": false
+    }
+]
