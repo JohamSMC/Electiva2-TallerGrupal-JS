@@ -13,8 +13,76 @@
   </div>
 
   <br>
-
   <h2 class="text-center font-italic font-weight-bold">Libros</h2>
+  <br>
+
+  <% if (resultAddBook === "successful") { %>
+  <div class="alert alert-success" role="alert">
+    Libro añadido con éxito!.
+  </div>
+  <% } %>
+
+  <% if (resultAddBook === "incorrect") { %>
+  <div class="alert alert-danger" role="alert">
+    El libro NO se añadió con éxito, verifique si no existe ya un libro con el mismo ISBN.
+  </div>
+  <% } %>
+
+  <button class="btn btn-info btn-lg btn-block" type="button" data-toggle="collapse" data-target="#addBook"
+    aria-expanded="false" aria-controls="collapseExample">
+    Añadir Libro
+    <i class="fas fa-book"></i>
+  </button>
+  <div class="collapse" id="addBook">
+    <div class="card card-body">
+      <form class="" action="/add-book" method="POST">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="ISBN">ISBN</label>
+            <input type="text" class="form-control" name="ISBN" id="ISBN" placeholder="ISBN" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="title">Título Libro</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Titulo Libro" required>
+          </div>
+          <br>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="author">Autor</label>
+            <input type="text" class="form-control" name="author" id="author" placeholder="Autor" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="yearPublication">Año de Publicación</label>
+            <input type="number" class="form-control" name="yearPublication" id="yearPublication" min="1900"
+              value="2021" max="2021" step="1" required>
+          </div>
+          <br>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="numberPages">Numero de Paginas</label>
+            <input type="number" class="form-control" name="numberPages" id="numberPages" min="1" value="100" step="1"
+              placeholder="Número de Paginas" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="quantity">Numero de Ejemplares</label>
+            <input type="number" class="form-control" name="quantity" id="quantity" min="1" value="1" step="1"
+              placeholder="Número de Ejemplares" required>
+          </div>
+          <br>
+        </div>
+
+        <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">
+            Añadir Libro
+            <i class="fas fa-book-reader"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <br>
 
@@ -25,9 +93,10 @@
           <th scope="col">ISBN</th>
           <th scope="col">Titulo</th>
           <th scope="col">Autor</th>
-          <th scope="col">Numero Ejemplares</th>
-          <th scope="col">Feche Publicación</th>
-          <th scope="col">Numero Paginas</th>
+          <th scope="col">Fecha Publicación</th>
+          <th scope="col">Número Paginas</th>
+          <th scope="col">Número Ejemplares</th>
+          <th scope="col">Ejemplares Disponibles</th>
           <th scope="col" class="table-info">Estado</th>
         </tr>
       </thead>
@@ -38,11 +107,12 @@
           <td class="text-center"><%= item.ISBN %></td>
           <td class="text-center"><%= item.title%></td>
           <td class="text-center"><%= item.author %></td>
-          <td class="text-center"><%= item.quantity %></td>
           <td class="text-center"><%= item.yearPublication %></td>
           <td class="text-center"><%= item.numberPages %></td>
+          <td class="text-center"><%= item.quantity %></td>
+          <td class="text-center"><%= item.quantity - item.amountBorrowed %></td>
 
-          <% if (item.quantity === 0  || !item.quantity){ %>
+          <% if (item.quantity - item.amountBorrowed === 0  || !item.quantity){ %>
           <td class="text-center table-danger">NO Disponible</td>
           <% } else if (item.quantity <= 5  ) { %>
           <td class="text-center table-warning">Pocas Unidades</td>
@@ -56,71 +126,7 @@
       </table>
     </div>
 
-    <br>
 
-    <% if (resultAddBook === "successful") { %>
-      <div class="alert alert-success" role="alert">
-        Libro añadido con éxito.
-      </div>
-    <% } %>
-
-    <% if (resultAddBook === "incorrect") { %>
-      <div class="alert alert-danger" role="alert">
-        El libro NO se añadió con éxito.
-      </div>
-    <% } %>
-
-    <button class="btn btn-info btn-lg btn-block" type="button" data-toggle="collapse" data-target="#addBook" aria-expanded="false" aria-controls="collapseExample">
-      Añadir Libro
-      <i class="fas fa-book"></i>
-    </button>
-    <div class="collapse" id="addBook">
-      <div class="card card-body">
-        <form class="" action="/add-book" method="POST">
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="ISBN">ISBN</label>
-              <input type="text" class="form-control" name="ISBN" id="ISBN" placeholder="ISBN" required>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="title">Titulo Libro</label>
-              <input type="text" class="form-control" name="title" id="title" placeholder="Titulo Libro" required>
-            </div>
-            <br>
-          </div>
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="author">Autor</label>
-              <input type="text" class="form-control" name="author" id="author" placeholder="Autor" required>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="yearPublication">Año de Publicación</label>
-              <input type="number" class="form-control" name="yearPublication" id="yearPublication" min="1900" value="2021" max="2021"  step="1" required>
-            </div>
-            <br>
-          </div>
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="numberPages">Numero de Paginas</label>
-              <input type="number" class="form-control" name="numberPages" id="numberPages" min="1" value="100" step="1" placeholder="Número de Paginas" required>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="quantity">Numero de Ejemplares</label>
-              <input type="number" class="form-control" name="quantity" id="quantity" min="1" value="1" step="1" placeholder="Número de Ejemplares" required>
-            </div>
-            <br>
-          </div>
-
-          <br>
-          <div class="text-center">
-            <button type="submit" class="btn btn-success">
-              Añadir Libro
-              <i class="fas fa-book-reader"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
 
     <br><br><br>
 

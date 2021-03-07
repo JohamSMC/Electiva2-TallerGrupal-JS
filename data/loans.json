@@ -1,0 +1,30 @@
+[
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9786124039669",
+        "loanDate": "YYYY-MM-DD",
+        "returnDate": "YYYY-MM-DD",
+        "return": false
+    },
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9788423919000",
+        "loanDate": "YYYY-MM-DD",
+        "returnDate": "YYYY-MM-DD",
+        "return": false
+    },
+    {
+        "IdNumber": "1052341586",
+        "ISBN": "9786124039669",
+        "loanDate": "2021-03-06",
+        "returnDate": "2021-03-06",
+        "return": false
+    },
+    {
+        "IdNumber": "123",
+        "ISBN": "9788423919000",
+        "loanDate": "2021-03-06",
+        "returnDate": "2021-03-08",
+        "return": false
+    }
+]
