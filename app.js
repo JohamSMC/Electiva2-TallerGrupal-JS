@@ -1,5 +1,4 @@
 const path = require("path");
-
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -17,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", books.routes);
-// app.use("/", users.routes);
-// app.use("/", loans.routes);
+app.use(loans.routes);
+app.use(users.routes);
 
 app.use((req, res, next) => {
   res.status(404).render("404", { pageTitle: "La pagina NO EXISTE" });

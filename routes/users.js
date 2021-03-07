@@ -12,4 +12,4 @@ router.get("/users", (req, res, next) => {
   });
 });
 
-module.exports = router;
+exports.routes = router;

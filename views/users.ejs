@@ -1,0 +1,60 @@
+<%- include("templates/head") %>
+<!-- CSS -->
+
+<title> <% pageTitle %> </title>
+</head>
+
+<%- include("templates/navBar") %>
+
+<div class="container">
+  <div class="text-center">
+    <h1 class="font-weight-bolder">BIBLIOTECA <i class="fas fa-book-open"></i> </h1>
+    <h2 class="font-weight-bolder">Municipal</h2>
+  </div>
+
+  <br>
+  <h2 class="text-center font-italic font-weight-bold">Usuarios</h2>
+  <br>
+
+  <br>
+
+  <div class="table-responsive">
+    <table id="tableBooks" class="table table-hover">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col">Número de Documento</th>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Correo Electrónico</th>
+          <th scope="col">Dirección de Residencia</th>
+          <th scope="col" class="table-info">Tiene Libros Prestados</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <% for(let user of users) {%>
+        <tr>
+          <input type="hidden" name="toDelete" value="<%= user.name %>">
+          <td class="text-center"><%= user.IdNumber %></td>
+          <td class="text-center"><%= user.name%></td>
+          <td class="text-center"><%= user.email %></td>
+          <td class="text-center"><%= user.address %></td>
+          <% if (user.hasBooksLoan === true) { %>
+          <td class="text-center table-warning"><%= user.hasBooksLoan %></td>
+          <% } else { %>
+          <td class="text-center"><%= user.hasBooksLoan %></td>
+          <% } %>
+        </tr>
+        <% } %>
+        <tbody>
+      </table>
+    </div>
+
+    <br><br><br>
+
+  </div>
+
+<%- include("templates/scripsJS") %>
+        <!-- JS -->
+
+        </body>
+
+        </html>
