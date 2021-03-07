@@ -26,5 +26,12 @@
         "loanDate": "2021-03-06",
         "returnDate": "2021-03-08",
         "return": false
+    },
+    {
+        "IdNumber": "123",
+        "ISBN": "9788423919000",
+        "loanDate": "2021-03-07",
+        "returnDate": "2021-03-07",
+        "return": false
     }
 ]

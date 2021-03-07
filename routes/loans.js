@@ -8,45 +8,6 @@ let books = require("../data/books.json");
 let users = require("../data/users.json");
 let loans = require("../data/loans.json");
 
-// / => GET
-router.get(["/", "/index"], (req, res, next) => {
-  books = fs.readFileSync(path.join(rootDir, "data", "books.json"));
-  books = JSON.parse(books);
-  // console.log(books);
-
-  res.render("books", {
-    pageTitle: "Lista Libros",
-    books: books,
-    resultAddBook: null,
-  });
-});
-
-// /add-book => POST
-router.post("/add-book", (req, res, next) => {
-  const currentBook = books.find((book) => book.ISBN === req.body.ISBN);
-  let resultAddBook;
-  if (currentBook) {
-    resultAddBook = "incorrect";
-  } else {
-    books.push({
-      ISBN: req.body.ISBN,
-      title: req.body.title,
-      author: req.body.author,
-      quantity: parseInt(req.body.quantity),
-      yearPublication: req.body.yearPublication,
-      numberPages: parseInt(req.body.numberPages),
-    });
-    const dataBooks = JSON.stringify(books);
-    fs.writeFileSync(path.join(rootDir, "data", "books.json"), dataBooks);
-    resultAddBook = "successful";
-  }
-  res.render("books", {
-    pageTitle: "Lista Libros",
-    books: books,
-    resultAddBook: resultAddBook,
-  });
-});
-
 // /loan-book => GET
 router.get("/loan-book", (req, res, next) => {
   books = fs.readFileSync(path.join(rootDir, "data", "books.json"));
@@ -72,10 +33,6 @@ router.post("/loan-book-oldUser", (req, res, next) => {
   loans = JSON.parse(loans);
 
   let resultLoanBook;
-  console.log("---------------------------------");
-  console.log(req.body);
-  console.log("---------------------------------");
-  console.log("-------------------------- Usuario Antiguo");
 
   const currentBook = books.find((book) => book.ISBN === req.body.bookList);
   const currentUser = users.find((user) => user.IdNumber === req.body.userList);
@@ -108,7 +65,6 @@ router.post("/loan-book-oldUser", (req, res, next) => {
   } else {
     resultLoanBook = "incorrect";
   }
-  console.log(resultLoanBook);
   res.render("bookLoans", {
     pageTitle: "Lista Libros",
     books: books,
@@ -127,10 +83,6 @@ router.post("/loan-book-newUser", (req, res, next) => {
   loans = JSON.parse(loans);
 
   let resultLoanBook;
-  console.log("---------------------------------");
-  console.log(req.body);
-  console.log("---------------------------------");
-  console.log("-------------------------- Usuario Nuevo");
   const currentUser = users.find((user) => user.IdNumber === req.body.IdNumber);
   if (!currentUser) {
     const currentBook = books.find((book) => book.ISBN === req.body.bookList);
@@ -171,9 +123,6 @@ router.post("/loan-book-newUser", (req, res, next) => {
   } else {
     resultLoanBook = "incorrect";
   }
-
-  console.log(resultLoanBook);
-
   res.render("bookLoans", {
     pageTitle: "Lista Libros",
     books: books,
