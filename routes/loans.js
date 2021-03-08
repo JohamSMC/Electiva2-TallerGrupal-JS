@@ -55,7 +55,7 @@ router.post("/loan-book-oldUser", (req, res, next) => {
       IdNumber: req.body.userList,
       ISBN: req.body.bookList,
       loanDate: req.body.loanDate,
-      returnDate: req.body.returnDate,
+      returnDate: "YYYY-MM-DD",
       return: false,
     });
 
@@ -109,7 +109,7 @@ router.post("/loan-book-newUser", (req, res, next) => {
         IdNumber: req.body.IdNumber,
         ISBN: req.body.bookList,
         loanDate: req.body.loanDate,
-        returnDate: req.body.returnDate,
+        returnDate: "YYYY-MM-DD",
         return: false,
       });
       //* Escribir en data el nuevo préstamo
@@ -196,6 +196,8 @@ router.post("/returnBook", (req, res, next) => {
   loans = JSON.parse(loans);
 
   let resultReturnBook;
+  console.log(req.body);
+  console.log("---------------");
 
   loans.forEach((loan) => {
     const currentBook = books.find((book) => book.ISBN === loan.ISBN);
@@ -211,13 +213,19 @@ router.post("/returnBook", (req, res, next) => {
       book.hasLoan = false;
     }
   });
-  const currentLoan = loans.find(
+  let currentLoan = loans.find(
     (loan) =>
-      loan.ISBN === req.body.bookISBN && loan.IdNumber === req.body.userIdNumber
+      loan.ISBN === req.body.bookISBN &&
+      loan.IdNumber === req.body.userIdNumber &&
+      loan.return === false
   );
   if (currentLoan) {
     // Cambiar el atributo return a true del loan
+    // Y asignar la fecha de devolución
+    let pos = loans.indexOf(currentLoan);
     currentLoan.return = true;
+    currentLoan.returnDate = req.body.returnDate;
+    loans.splice(pos, 1, currentLoan);
     const dataLoans = JSON.stringify(loans);
     fs.writeFileSync(path.join(rootDir, "data", "loans.json"), dataLoans);
     loans = fs.readFileSync(path.join(rootDir, "data", "loans.json"));
@@ -247,6 +255,8 @@ router.post("/returnBook", (req, res, next) => {
   } else {
     resultReturnBook = "incorrect";
   }
+
+  console.log(resultReturnBook);
 
   res.render("returnBook", {
     pageTitle: "Devolver Libro",

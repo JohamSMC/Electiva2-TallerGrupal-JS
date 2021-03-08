@@ -16,6 +16,20 @@
   <h2 class="text-center font-italic font-weight-bold">Devolución de libro</h2>
   <br>
 
+  <% if (resultReturnBook === "successful") { %>
+  <div class="alert alert-success" role="alert">
+    Devolución de libro correcta.
+  </div>
+  <% } %>
+
+  <% if (resultReturnBook === "incorrect") { %>
+  <div class="alert alert-danger" role="alert">
+    Error: Verifique los datos de devolución.
+  </div>
+  <% } %>
+
+  <br>
+
   <button class="btn btn-info btn-lg btn-block" type="button" data-toggle="collapse" data-target="#returnBook"
     aria-expanded="false" aria-controls="collapseExample">
     Devolver Libro
@@ -52,6 +66,13 @@
             <% } %>
             <% } %>
           </select>
+        </div>
+        <br>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="returnDate">Fecha de Devolución</label>
+            <input type="date" name="returnDate" id="returnDate" required>
+          </div>
         </div>
 
         <br>
@@ -108,6 +129,9 @@
 
 <%- include("templates/scripsJS") %>
         <!-- JS -->
+        <script>
+          document.getElementsByName('returnDate')[0].valueAsDate = new Date();
+        </script>
 
         </body>
 

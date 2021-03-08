@@ -24,7 +24,8 @@
 
   <% if (resultLoanBook === "incorrect") { %>
   <div class="alert alert-danger" role="alert">
-    No se pudo logar el préstamo de libro, verifique los datos del usuario(Número de Documento) y la disponibilidad del libro.
+    No se pudo logar el préstamo de libro, verifique los datos del usuario(Número de Documento) y la disponibilidad del
+    libro.
   </div>
   <% } %>
 
@@ -64,10 +65,6 @@
           <div class="col-md-6 mb-3">
             <label for="loanDate">Fecha de Préstamo</label>
             <input type="date" name="loanDate" id="loanDate" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="returnDate">Fecha de Devolución</label>
-            <input type="date" name="returnDate" id="returnDate" required>
           </div>
         </div>
         <div class="form-row">
@@ -129,10 +126,6 @@
             <label for="loanDate">Fecha de Préstamo</label>
             <input type="date" name="loanDate" id="loanDate" required>
           </div>
-          <div class="col-md-6 mb-3">
-            <label for="returnDate">Fecha de Devolución</label>
-            <input type="date" name="returnDate" id="returnDate" required>
-          </div>
         </div>
         <div class="form-row">
           <select class="custom-select" name="userType" id="userType" required>
@@ -173,9 +166,7 @@
   <!-- JS -->
   <script>
     document.getElementsByName('loanDate')[0].valueAsDate = new Date();
-    document.getElementsByName('returnDate')[0].valueAsDate = new Date();
     document.getElementsByName('loanDate')[1].valueAsDate = new Date();
-    document.getElementsByName('returnDate')[1].valueAsDate = new Date();
   </script>
 
   </body>
