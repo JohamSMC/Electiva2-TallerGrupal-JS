@@ -8,6 +8,7 @@
 ***
 ## Integrantes:
 Joham Sebastian Medina Corredor
+
 John Granados Salamanca
 ## Tecnologias:
 JavaScript (JS)
